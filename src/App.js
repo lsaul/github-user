@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+//import logo from './logo.svg';
+import React, { useState } from 'react'
+import ReactDOM from 'react-dom'
+// import Button from './components/Button'
+import Form from './components/Form'
+import CardList from './components/Card'
 
-function App() {
+import './styles/App.css';
+
+const App = () => {
+   const [cards, setCards] = useState([])
+
+   const addNewCard = cardInfo => {
+     console.log("Both on submit handlers run")
+     setCards(cards.concat(cardInfo))
+   }
+
+
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+
+        <Form onSubmit={addNewCard} />
+
+        <CardList cards={cards} />
+
+      </div>
   );
 }
 
 export default App;
+
